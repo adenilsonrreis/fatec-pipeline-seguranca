@@ -1,0 +1,66 @@
+name: Execucao Segura CI-CD Fatec
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  varredura-seguranca:
+    name: '🛡️ Analise CodeQL SAST'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+      - name: Ambiente Python Setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencias Globais
+        run: pip install -r requirements.txt
+      - name: Start CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+          config-file: ./.github/codeql-config.yml
+      - name: Finalizar e Analisar
+        uses: github/codeql-action/analyze@v3
+
+  testes-sistema:
+    name: '🧪 Validacao Unitaria Automatizada'
+    runs-on: ubuntu-latest
+    needs: varredura-seguranca
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+      - name: Ambiente Python Setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencias de Teste
+        run: |
+          pip install -r requirements.txt
+          pip install pytest flake8
+      - name: Rodar Pytest
+        run: pytest tests/ -v
+      - name: Checar Lint com Flake8
+        run: flake8 . --max-line-length=120
+
+  entrega-homologacao:
+    name: '🚀 Deploy Simulado - Stage'
+    runs-on: ubuntu-latest
+    needs: [varredura-seguranca, testes-sistema]
+    environment: stage
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+      - name: Executar Script de Implantacao
+        run: |
+          echo '✅ Validacao concluida com sucesso.'
+          echo 'Publicando a build id: ${{ github.sha }}'
+          echo '🚀 Status: Aplicacao publicada em Homologacao!'
