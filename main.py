@@ -1,3 +1,4 @@
+import sqlite3
 def saudacao(nome: str) -> str:
     if not isinstance(nome, str):
         raise TypeError("Nome deve ser uma string")
@@ -13,7 +14,6 @@ def calcular_media(notas: list) -> float:
 if __name__ == "__main__":
     print(saudacao("Aluno"))
     print(calcular_media([10, 8, 6]))
-import sqlite3
 
 def buscar_usuario_vulneravel(user_id):
     conn = sqlite3.connect('banco.db')
