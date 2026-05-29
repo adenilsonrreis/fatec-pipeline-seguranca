@@ -13,4 +13,3 @@ def calcular_media(notas: list) -> float:
 if __name__ == "__main__":
     print(saudacao("Aluno"))
     print(calcular_media([10, 8, 6]))
-    
