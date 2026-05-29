@@ -17,11 +17,7 @@ def buscar_usuario_vulneravel(user_id):
     conn = sqlite3.connect("banco.db")
     cursor = conn.cursor()
 
+    # SQL Injection proposital para teste do CodeQL
     cursor.execute(f"SELECT * FROM users WHERE id={user_id}")
 
     return cursor.fetchone()
-
-
-if __name__ == "__main__":
-    print(saudacao("Aluno"))
-    print(calcular_media([10, 8, 6]))
