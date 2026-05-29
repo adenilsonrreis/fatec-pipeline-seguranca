@@ -1,3 +1,9 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import pytest
+from main import saudacao, calcular_media
 import pytest
 from main import verificar_peso_carga
 
