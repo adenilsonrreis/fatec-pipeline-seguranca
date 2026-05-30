@@ -1,5 +1,5 @@
 def saudacao(nome: str) -> str:
-    dif not isinstance(nome, str):
+    if not isinstance(nome, str):
         raise TypeError("Nome deve ser uma string")
     return f"Olá, {nome}!"
 
