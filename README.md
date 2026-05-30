@@ -1,12 +1,12 @@
 
 # Pipeline CI/CD com CodeQL - FATEC Santana de Parnaíba
 
-**Objetivo da Pipeline**
+**Objetivo da Pipeline:**
 Este projeto tem como finalidade implantar uma pipeline de Integração Contínua e Entrega Contínua (CI/CD) por meio do GitHub Actions, possibilitando automatizar testes, avaliações de qualidade de código e verificações de segurança em aplicações Python.
 
 A pipeline foi preparada para rodar testes automatizados, realizar análise estática de segurança com CodeQL e executar uma etapa de deploy simulado, assegurando maior confiabilidade e qualidade ao longo do desenvolvimento do software.
 
-**Tecnologias Utilizadas**
+**Tecnologias Utilizadas:**
 Python 3.11
 GitHub Actions
 CodeQL
