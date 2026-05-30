@@ -13,9 +13,6 @@ def calcular_media(notas: list) -> float:
     return sum(notas) / len(notas)
 
 
-import sqlite3
-
-
 def conectar_banco():
     return sqlite3.connect("banco.db")
 
